@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import { Layout, Space } from "antd";
-import GlobalStore from "../../shared/globalStore";
+import GlobalStore, { appState } from "../../shared/globalStore";
 import EventBus from "../../shared/eventBus";
 import DataSetCreationForm from "./components/DataSetCreationForm";
 
@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const listener = (newState) => {
+    const listener = (newState: appState) => {
       console.log(newState, "newState");
       setData(newState);
     };
@@ -54,7 +54,7 @@ function App() {
         <Space direction="horizontal" />
         {data.items?.length > 0 && (
           <ul>
-            {data.items?.map((item, index) => (
+            {data.items?.map((item: string, index: number) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
